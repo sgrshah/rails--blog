@@ -12,3 +12,7 @@
  *= require_tree ../../../vendor/assets/css
  *= require_tree .
  */
+
+ul.nav li.dropdown:hover > ul.dropdown-menu{
+    display: block;    
+}

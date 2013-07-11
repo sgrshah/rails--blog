@@ -4,60 +4,25 @@
   <li><%#= link_to 'New Post', new_post_path %></li>
 </ul> -->
 
-<ul class="nav nav-tabs">
-  <li class="dropdown">
-    <a class="dropdown-toggle"
-       data-toggle="dropdown"
-       href="#">
-        Authors
-        <b class="caret"></b>
-      </a>
-    <ul class="dropdown-menu">
-      <li><a href="/authors">See all authors</a></li>
-      <li><a href="/authors/new">Add new author</a></li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle"
-       data-toggle="dropdown"
-       href="#">
-        Posts
-        <b class="caret"></b>
-      </a>
-    <ul class="dropdown-menu">
-      <li><a href="/posts">See all posts</a></li>
-      <li><a href="/posts/new">Add new post</a></li>
-    </ul>
-  </li>
-  <li class="dropdown">
-    <a class="dropdown-toggle"
-       data-toggle="dropdown"
-       href="#">
-        Comments
-        <b class="caret"></b>
-      </a>
-    <ul class="dropdown-menu">
-      <li><a href="/comments">See all comments</a></li>
-      <li><a href="/comments/new">Add new comment</a></li>
-    </ul>
-  </li>
-</ul>
-
-
 <table class="table table-striped">
-    <tr>
-    <th>Post title</th>
-    <th>Show</th>
-    <th>Edit</th>
-    <th>Delete</th>
   </tr>
 <% @posts.each do |post| %>
   <tr>
-    <td><%= post.title %></td>
-    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to "#{post.title}", post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <tr>
+    <td><%= post.body %>
+      <h6>Comments:</h6>
+      <%post.comments.each do |comment|%>
+        <%=comment.body%> - by: <%=comment.commentor%><br>
+      <%end%>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+
 <% end %>
 </table>
 
